@@ -1,0 +1,26 @@
+[
+    {
+        "global" : "FactionRanks_CompanionsRank",
+        "id" : "C",
+        "label" : "$FACR_C_",
+        "questList" : "FactionRanks_CQuests"
+    },
+    {
+        "global" : "FactionRanks_DarkBrotherhoodRank",
+        "id" : "DB",
+        "label" : "$FACR_DB_",
+        "questList" : "FactionRanks_DBQuests"
+    },
+    {
+        "global" : "FactionRanks_ThievesGuildRank",
+        "id" : "TG",
+        "label" : "$FACR_TG_",
+        "questList" : "FactionRanks_TGQuests"
+    },
+    {
+        "global" : "FactionRanks_MagesGuildRank",
+        "id" : "MG",
+        "label" : "$FACR_MG_",
+        "questList" : "FactionRanks_MGQuests"
+    }
+]
