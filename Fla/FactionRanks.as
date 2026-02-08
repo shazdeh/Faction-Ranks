@@ -30,7 +30,7 @@ class FactionRanks extends MovieClip {
 
         StatsPage_mc.FR__onCategoryHighlight = StatsPage_mc.onCategoryHighlight;
         StatsPage_mc.onCategoryHighlight = onCategoryHighlight;
-        Menu_mc.TabButtonGroup.addEventListener("itemClick", this, "onTabClick");
+        Menu_mc.TabButtonGroup.addEventListener("change", this, "onTabChange");
     }
 
     function onCategoryHighlight() {
@@ -53,11 +53,7 @@ class FactionRanks extends MovieClip {
         }
     }
 
-    function onTabClick(event: Object): Void {
-        if (Menu_mc.bTabsDisabled) {
-            return;
-        }
-
+    function onTabChange(event: Object): Void {
         if ( event.item == Menu_mc.StatsTab && CategoryList.selectedEntry.isFactionRanks ) {
             render();
         } else {
