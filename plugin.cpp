@@ -1,4 +1,8 @@
-﻿struct Rank {
+﻿#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
+
+struct Rank {
     TESGlobal* global;
     BGSListForm* questList;
     std::string id;
@@ -160,8 +164,25 @@ static void OnDataLoad() {
     }
 }
 
+int GetContainerMode(StaticFunctionTag*) {
+    if (auto* ui = UI::GetSingleton(); ui) {
+        if (auto containerMenu = ui->GetMenu<ContainerMenu>(); containerMenu) {
+            return static_cast<int>(containerMenu->GetContainerMode());
+        }
+    }
+    return -1;
+}
+
+bool PapyrusBinder(BSScript::IVirtualMachine* vm) {
+    vm->RegisterFunction("GetContainerMode", "FactionRanks_Utils", GetContainerMode);
+
+    return false;
+}
+
 SKSEPluginLoad(const SKSE::LoadInterface* skse) {
     SKSE::Init(skse);
+
+    SKSE::GetPapyrusInterface()->Register(PapyrusBinder);
 
     SKSE::GetMessagingInterface()->RegisterListener([](SKSE::MessagingInterface::Message* message) {
         if (message->type == SKSE::MessagingInterface::kDataLoaded) {
