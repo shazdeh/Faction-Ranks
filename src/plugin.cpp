@@ -1,4 +1,4 @@
-﻿#include <nlohmann/json.hpp>
+#include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
 
@@ -109,9 +109,9 @@ static void DispatchEvent(Rank& a_rank) {
 static int GetPlayerRank(Rank& a_rank) {
     if (!a_rank.questList) return 0;
     int count = 0;
-    a_rank.questList->ForEachForm([&](TESForm& formItem) {
-        if (formItem.GetFormType() == FormType::Quest) {
-            TESQuest* quest = formItem.As<TESQuest>();
+    a_rank.questList->ForEachForm([&count](TESForm* formItem) {
+        if (formItem->GetFormType() == FormType::Quest) {
+            TESQuest* quest = formItem->As<TESQuest>();
             if (quest->IsCompleted()) {
                 count++;
             }
